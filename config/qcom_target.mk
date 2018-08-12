@@ -1,5 +1,5 @@
 # Bring in Qualcomm helper macros
-include vendor/nitrogen/config/qcom_utils.mk
+include vendor/hedgehog/config/qcom_utils.mk
 
 # Target-specific configuration
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)

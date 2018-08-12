@@ -1,6 +1,6 @@
 # Generic product
-PRODUCT_NAME := nitrogen
-PRODUCT_BRAND := nitrogen
+PRODUCT_NAME := hedgehog
+PRODUCT_BRAND := hedgehog
 PRODUCT_DEVICE := generic
 
 EXCLUDE_SYSTEMUI_TESTS := true
@@ -28,7 +28,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.calibration_cad=/system/etc/calibration_cad.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nitrogen.version=$(PLATFORM_VERSION)-$(BUILD_ID)
+    ro.hedgehog.version=$(PLATFORM_VERSION)-$(BUILD_ID)
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
     ro.adb.secure=0 \
@@ -37,11 +37,11 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
 
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/nitrogen/overlay/common
+    vendor/hedgehog/overlay/common
 
 # Fix Dialer
 PRODUCT_COPY_FILES +=  \
-    vendor/nitrogen/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml
+    vendor/hedgehog/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -50,20 +50,20 @@ PRODUCT_COPY_FILES += \
 # Latin IME lib - gesture typing
 ifeq ($(TARGET_ARCH),arm64)
 PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so \
-    vendor/nitrogen/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
+    vendor/hedgehog/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so \
+    vendor/hedgehog/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
 else
 PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
+    vendor/hedgehog/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
 endif
 
 # APN
 PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/hedgehog/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # AR
 PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
+    vendor/hedgehog/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
 
 # Extra packages
 PRODUCT_PACKAGES += \
@@ -73,15 +73,6 @@ PRODUCT_PACKAGES += \
 
 # Init.d script support
 PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    vendor/nitrogen/prebuilt/common/init.d/00banner:system/etc/init.d/00banner \
-    vendor/nitrogen/prebuilt/common/init.d/init.d.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.d.rc
+    vendor/hedgehog/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/hedgehog/prebuilt/common/init.d/init.d.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.d.rc
 
-# Backup Tool
-PRODUCT_COPY_FILES += \
-    vendor/nitrogen/prebuilt/common/addon.d/50-nitrogen.sh:system/addon.d/50-nitrogen.sh \
-    vendor/nitrogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/nitrogen/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions
-
-# Boot animations
-$(call inherit-product-if-exists, vendor/nitrogen/products/bootanimation.mk)
